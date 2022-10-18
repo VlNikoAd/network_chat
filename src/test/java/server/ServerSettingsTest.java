@@ -7,13 +7,13 @@ import org.junit.jupiter.api.Test;
 public class ServerSettingsTest {
 
     @Test
-    void settingFileRead()  {
+    void settingFileRead() {
         ServerSettings serverSettings = new ServerSettings();
         String line = "localhost:23420";
         String[] splitLine = line.split(":");
 
         String[] result = serverSettings.settingFileRead();
-        Assertions.assertArrayEquals(result,splitLine);
+        Assertions.assertArrayEquals(result, splitLine);
     }
 
     @Test

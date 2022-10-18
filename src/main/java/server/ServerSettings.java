@@ -8,14 +8,14 @@ import java.io.IOException;
 public class ServerSettings {
 
     private static final File SETTING_TXT = new File("settings.txt");
-    private  final String[] settings;
+    private final String[] settings;
 
 
     public ServerSettings() {
         this.settings = settingFileRead();
     }
 
-    public String[] settingFileRead () {
+    public String[] settingFileRead() {
         String result = "";
         try (BufferedReader br = new BufferedReader(new FileReader(SETTING_TXT))) {
             String line;

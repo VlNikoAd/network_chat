@@ -2,25 +2,14 @@ package server;
 
 import java.io.*;
 import java.net.Socket;
-import java.util.Scanner;
 
 public class ClientThread implements Runnable {
 
-    //наш сервер
     private final Server server;
-
-    // сокет, через который сервер общается с клиентом
     private final Socket socket;
-
-    //сообщение для отправки в чат
     private final BufferedWriter msgOut;
-
-    // поток чтения из сокета
     private final BufferedReader in;
-
-    //количество пользователей в чате
     private static int clientsCount = 0;
-
 
     public ClientThread(Socket clientSocket, Server server) throws IOException {
         clientsCount++;
@@ -33,7 +22,6 @@ public class ClientThread implements Runnable {
     @Override
     public void run() {
         while (true) {
-            // сообщения от сервера
             server.sendMsgToAll("Новый участник вошел в чат");
             server.sendMsgToAll("В чате " + clientsCount + " человек");
             break;
@@ -62,6 +50,7 @@ public class ClientThread implements Runnable {
                 }
             } catch (NullPointerException ignored) {
             }
+
         } catch (Exception e) {
             e.printStackTrace();
         } finally {

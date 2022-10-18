@@ -9,29 +9,20 @@ import java.io.PrintWriter;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
-
 public class Client {
 
     Logger logger = Logger.getInstance();
 
-    private final String host;
-    private final int port;
-
     //сокет клиента
     private Socket socket;
-    // поток чтения из сокета
     private BufferedReader in;
-    //поток в сокет
     private PrintWriter outMsg;
+
     //поток из консоли
     private BufferedReader input;
-    // имя клиента
     private String clientNickName;
 
-
     public Client(String host, int port) {
-        this.host = host;
-        this.port = port;
         try {
             //подключаемся к серверу
             this.socket = new Socket(host, port);
@@ -55,7 +46,6 @@ public class Client {
         clientNickName = input.readLine();
         outMsg.write("Привет " + clientNickName + "\n");
         outMsg.flush();
-
     }
 
     //прерываение нити и выход

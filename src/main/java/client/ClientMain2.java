@@ -8,6 +8,6 @@ public class ClientMain2 {
         ServerSettings serverSettings = new ServerSettings();
         final String serverHost = serverSettings.getHost();
         final int serverPort = serverSettings.getPort();
-        Client client = new Client(serverHost,serverPort);
+        Client client = new Client(serverHost, serverPort);
     }
 }

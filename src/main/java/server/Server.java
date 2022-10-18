@@ -8,7 +8,7 @@ import java.util.ArrayList;
 public class Server {
 
     static final int PORT = 23420;
-    private ArrayList<ClientThread> clients = new ArrayList<>();
+    private final ArrayList<ClientThread> clients = new ArrayList<>();
     Logger logger = Logger.getInstance();
 
     public Server() {
@@ -20,7 +20,7 @@ public class Server {
             serverSocket = new ServerSocket(PORT);
             logger.log("Чат запущен!");
             // ждём подключений в бесконечном цикле
-            while (true) {
+            while (!serverSocket.isClosed()) {
                 clientSocket = serverSocket.accept();
                 // создаём обьект потока клиента, который подключился к серверу
                 // this - это наш сервер
@@ -33,6 +33,7 @@ public class Server {
             e.printStackTrace();
         } finally {
             try {
+                assert clientSocket != null;
                 clientSocket.close();
                 logger.log("Сервер остановлен");
                 serverSocket.close();
